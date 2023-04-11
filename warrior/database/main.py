@@ -1,6 +1,6 @@
-from warrior import database
+from warrior import DATABASE
 
-db = database.main
+db = DATABASE["MAIN"]
 
 async def add_users_to_db(user_id: int):
      string = {"user_id": user_id, "bucks": 500}
