@@ -5,13 +5,7 @@ from warrior.database.bucks import add_bucks_to_db, get_bucks_from_users
 from warrior.database.main import get_users_list
 from pyrogram import filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
-
-
-async def ask_to_dm_first(message):
-     username = (await bot.get_me()).username
-     return await message.reply_text(
-          "First Dm Me", reply_markup=InlineKeyboardMarkup([[
-            InlineKeyboardButton("Click here!", url=f"t.me/{username}"),]]),)
+from warrior.plugins.main import ask_to_dm_first
 
 
 dice_users = []
