@@ -52,7 +52,7 @@ async def dart(_, message):
     chat_id = message.chat.id
     if not user_id in (await get_users_list()):
          return await ask_to_dm_first(message=message)
-    if user_id in dice_users:
+    if user_id in dart_users:
         return await message.reply_text("Try Later You Already Played! Next One Would Be Takes 10Minutes")
     dart_users.append(user_id)    
     xx = await bot.send_dice(chat_id=chat_id, emoji="🎯")
@@ -72,5 +72,5 @@ async def dart(_, message):
     await message.reply_text(
         f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     await asyncio.sleep(10*60)
-    dice_users.remove(user_id)
+    dart_users.remove(user_id)
     return 
