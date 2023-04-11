@@ -3,3 +3,4 @@ tgcrypto
 requests
 pymongo
 pymongo[srv]
+asyncio
