@@ -4,7 +4,7 @@ from warrior import database
 db = database["main"]
 
 
-async get_bucks_from_users(user_id: int):
+async def get_bucks_from_users(user_id: int):
      string = {"user_id": user_id}
      xx = db.find_one(string)
      mm = int(xx["bucks"])
