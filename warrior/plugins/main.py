@@ -9,7 +9,7 @@ from pyrogram import filters, enums
 async def start(_, message):
       user_id = int(message.from_user.id)
       if message.chat.type == enums.ChatType.PRIVATE:
-             if not user_id in await get_users_list():
+             if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
                     return await message.reply_text("You have been added to my database. that case you got 500 coins.") 
              else:
