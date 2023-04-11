@@ -1,7 +1,7 @@
 from warrior import database
 
 
-db = database["main"]
+db = database.main
 
 
 async def get_bucks_from_users(user_id: int):
