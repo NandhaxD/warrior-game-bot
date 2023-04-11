@@ -6,6 +6,9 @@ from pyrogram import Client
 from pymongo import MongoClient
 
 
+#prefix for commands
+prefix = [".","!","?","*","$","#","/"]
+
 
 #mongo database 
 mongodb_url = "mongodb+srv://Kora:Kora@2008@kora.zbev3wd.mongodb.net/?retryWrites=true&w=majority"
