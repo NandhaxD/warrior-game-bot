@@ -26,6 +26,7 @@ logging.basicConfig(level=logging.INFO, handlers=[logging.FileHandler('logs.txt'
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
 TOKEN = os.getenv("TOKEN")
+GROUP_ID = os.getenv("GROUP_ID")
 
 
 
