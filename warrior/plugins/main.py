@@ -11,7 +11,7 @@ async def start(_, message):
       if message.chat.type == enums.ChatType.PRIVATE:
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
-                    return await message.reply_text("You have been added to my database. that case you got 500 coins.") 
+                    return await message.reply_text("You Have Been Added To My Database. That Case You Got 500 Bucks.") 
              else:
                  return await message.reply_text("*you start message text here*")
       else:
