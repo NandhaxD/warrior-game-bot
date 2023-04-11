@@ -33,7 +33,8 @@ async def dice(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
-    return await message.reply_text(
+    await message.reply_text(
         f"You won: **{bucks}**\nTotal bucks: **{kk}**")
-    asyncio.sleep(10*60)
+    await asyncio.sleep(10*60)
     dice_users.remove(user_id)
+    return 
