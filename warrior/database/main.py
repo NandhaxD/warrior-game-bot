@@ -7,6 +7,6 @@ async def add_users_to_db(user_id: int):
      db.insert_one(string)
 
 async def get_users_list():
-     list = [x["user_id"] for x in usersdb.find()]
+     list = [x["user_id"] for x in db.find()]
      return list
 
