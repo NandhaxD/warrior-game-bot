@@ -31,7 +31,7 @@ GROUP_ID = os.getenv("GROUP_ID")
 
 
 bot = Client(
-       name="warrior"
+       name="warrior",
        api_id=API_ID,
        api_hash=API_HASH,
        bot_token=TOKEN,
