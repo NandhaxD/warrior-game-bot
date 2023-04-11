@@ -10,6 +10,10 @@ async def ask_to_dm_first(message):
           "First Dm Me", reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Click here!", url=f"t.me/{username}"),]]),)
 
+async def send_help_msg(message):
+     mm = message.text.split(None,1)[1] 
+     if mm == "help":
+         return message.reply_text("*help message*")
 
 @bot.on_message(filters.command("start", prefix))
 async def start(_, message):
