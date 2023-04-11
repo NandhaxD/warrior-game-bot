@@ -12,7 +12,7 @@ prefix = [".","!","?","*","$","#","/"]
 
 #mongo database 
 MONGODB_URL = "mongodb+srv://nandhaxd:rw5T7YJRjsE3fmk3@cluster0.80igexg.mongodb.net/?retryWrites=true&w=majority"
-MONGO = MongoClient(mongodb_url)
+MONGO = MongoClient(MONGODB_URL)
 DATABASE = MONGO.WARRIOR
 
 
