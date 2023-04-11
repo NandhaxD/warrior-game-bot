@@ -4,6 +4,12 @@ from warrior import bot, prefix
 from warrior.database.main import add_users_to_db, get_users_list
 from pyrogram import filters, enums 
 
+async def ask_to_dm_first(message):
+     username = (await bot.get_me()).username
+     return await message.reply_text(
+          "First Dm Me", reply_markup=InlineKeyboardMarkup([[
+            InlineKeyboardButton("Click here!", url=f"t.me/{username}"),]]),)
+
 
 @bot.on_message(filters.command("start", prefix))
 async def start(_, message):
