@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 async def ask_to_dm_first(message):
-     username = (await app.get_me()).username
+     username = (await bot.get_me()).username
      return await message.reply_text(
           "First Dm Me", reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Click here!", url=f"t.me/{username}"),]]),)
