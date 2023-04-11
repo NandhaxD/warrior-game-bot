@@ -11,7 +11,7 @@ prefix = [".","!","?","*","$","#","/"]
 
 
 #mongo database 
-mongodb_url = "mongodb+srv://Kora:Kora@2008@kora.zbev3wd.mongodb.net/?retryWrites=true&w=majority"
+mongodb_url = "mongodb+srv://nandhaxd:rw5T7YJRjsE3fmk3@cluster0.80igexg.mongodb.net/?retryWrites=true&w=majority"
 mongo = MongoClient(mongodb_url)
 database = mongo.warrior
 
