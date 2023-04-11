@@ -1,5 +1,5 @@
 from warrior import bot, prefix
-from warrior.database.bucks import add_bucks_to_users, get_bucks_from_users
+from warrior.database.bucks import add_bucks_to_db, get_bucks_from_users
 from pyrogram import filters, enums
 
 
@@ -25,10 +25,10 @@ async def dice(_, message):
          bucks = 5000
     elif value == 6:
          bucks = 6000
-    await add_bucks_to_users(
+    await add_bucks_to_db(
         user_id=user_id,
         bucks=bucks)
-    kk = await get_users_bucks(
+    kk = await get_bucks_from_users(
             user_id=user_id)
     return await message.reply_text(
         f"You won: **{bucks}**\nTotal bucks: **{kk}**")
