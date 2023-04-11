@@ -55,7 +55,7 @@ async def dart(_, message):
     if user_id in dice_users:
         return await message.reply_text("Try Later You Already Played! Next One Would Be Takes 10Minutes")
     dart_users.append(user_id)    
-    xx = await bot.send_dice(chat_id=chat_id, "🎯")
+    xx = await bot.send_dice(chat_id=chat_id, emoji="🎯")
     value = int(xx.dice.value)
     if value == 6:
          bucks = 10000
