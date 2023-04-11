@@ -14,7 +14,7 @@ async def dice(_, message):
     if user_id in dice_users:
         return await message.reply_text("Sorry Try Later You Already Played!")
     dice_users.append(user_id)    
-    xx = await app.send_dice(chat_id=chat_id)
+    xx = await bot.send_dice(chat_id=chat_id)
     value = int(xx.value)
     if value == 1:
          bucks = 10000
