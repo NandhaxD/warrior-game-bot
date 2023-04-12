@@ -39,7 +39,7 @@ async def record(_, message):
         string = f"📛 **Name**: {message.from_user.mention}\n"
         string += f"💰 **bucks**: {bucks}\n"
         await message.reply_photo(
-            photo=default_pfp, text=string, parse_mode=enums.ParseMode.MARKDOWN, 
+            photo=default_pfp, caption=string, parse_mode=enums.ParseMode.MARKDOWN, 
             reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Settings ⚙️", callback_data=f"settings"),]]),)
 
