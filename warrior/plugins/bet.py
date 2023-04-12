@@ -17,8 +17,8 @@ async def bet(_, message):
        spend = int(message.text.split(None,1)[1])
     except:
          return await message.reply_text("It Must Be Integer.\nExample: /Bet 1000")
-    if message.text.split(None,1)[1][1] == "-":
-        return await message.reply_text("What? Why Are You Bet Minis Bucks, Only Plus Is Allowed!")
+    if message.text.split(None,1)[1][0] == "-":
+        return await message.reply_text("You Cannot Do This! 🚫")
     hand = await get_bucks_from_users(user_id)
     if hand > spend:
          bucks = random.randrange(3*-spend, 4*spend)
