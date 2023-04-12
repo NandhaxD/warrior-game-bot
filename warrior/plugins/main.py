@@ -74,8 +74,8 @@ async def edit_pfp(_, query):
            await query.message.delete()
            EDIT_PFP.append(user_id)           
            yy = await query.message.reply("Reply With Photo:\n To Save Profile! ")
-           asyncio.sleep(30)
-           await yy.edit_text("TimeOut Try Again. 🚫")
+           await asyncio.sleep(30)
+           await yy.edit_text("Timeout Try Again. 🚫")
            EDIT_PFP.remove(user_id)
            return 
 
