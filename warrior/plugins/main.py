@@ -2,6 +2,7 @@
 
 from warrior import bot, prefix 
 from warrior.database.main import add_users_to_db, get_users_list
+from warrior.database.bucks import get_bucks_from_users
 from pyrogram import filters, enums 
 
 async def ask_to_dm_first(message):
@@ -25,3 +26,23 @@ async def start(_, message):
       else:
           return await message.reply_text("*your start message text here*")
 
+
+@bot.on_message(filters.command("record", prefix))
+async def record(_, message):
+    user_id = message.from_user.id
+    default_pfp = "https://graph.org//file/6b06c18453ebb6e6005da.jpg"
+    if user_id not in (await get_users_list()):
+          return await ask_to_dm_first(message=message)
+    else:
+        bucks = await get_bucks_from_users(user_id)
+        string = f"📛 **Name**: {message.from_user.mention}\n"
+        string += f"💰 **bucks**: {bucks}\n"
+        await message.reply_photo(
+            photo=default_pfp, text=string, parse_mode=enums.ParseMode.MARKDOWN, 
+            reply_markup=InlineKeyboardMarkup([[
+            InlineKeyboardButton("Settings ⚙️", callback_data=f"settings"),]]),)
+
+
+
+
+      
