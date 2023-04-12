@@ -4,7 +4,7 @@ import asyncio
 from warrior import bot, prefix 
 from warrior.database.main import add_users_to_db, get_users_list
 from warrior.database.bucks import get_bucks_from_users
-from warrior.database.profile import add_profile_to_users
+from warrior.database.profile import add_profile_to_users, get_profile_from_users
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
@@ -46,6 +46,7 @@ async def record(_, message):
         bucks = await get_bucks_from_users(user_id)
         string = f"📛 <b>Name</b>: {message.from_user.mention}\n"
         string += f"💰 <b>Bucks</b>: {bucks}\n"
+        if (await get_profile_from_users(user_id):
         await message.reply_photo(
             photo=default_pfp, caption=string, parse_mode=enums.ParseMode.HTML, 
             reply_markup=InlineKeyboardMarkup([[
