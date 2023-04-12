@@ -36,10 +36,10 @@ async def record(_, message):
           return await ask_to_dm_first(message=message)
     else:
         bucks = await get_bucks_from_users(user_id)
-        string = f"📛 **Name**: {message.from_user.mention}\n"
-        string += f"💰 **bucks**: {bucks}\n"
+        string = f"📛 <b>Name</b>: {message.from_user.mention}\n"
+        string += f"💰 <b>Bucks</b>: {bucks}\n"
         await message.reply_photo(
-            photo=default_pfp, caption=string, parse_mode=enums.ParseMode.MARKDOWN, 
+            photo=default_pfp, caption=string, parse_mode=enums.ParseMode.HTML, 
             reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Settings ⚙️", callback_data=f"settings"),]]),)
 
