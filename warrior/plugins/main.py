@@ -41,9 +41,17 @@ async def record(_, message):
         await message.reply_photo(
             photo=default_pfp, caption=string, parse_mode=enums.ParseMode.HTML, 
             reply_markup=InlineKeyboardMarkup([[
-            InlineKeyboardButton("Settings ⚙️", callback_data=f"settings"),]]),)
+            InlineKeyboardButton("Settings ⚙️", callback_data=f"settings:{user_id}"),]]),)
 
 
-
+@bot.on_callback_query(filters.regex("settings"))
+async def settings(_, query):
+     user_id = query.from_user.id
+     mm = int(query.data.split(":")[1])
+     if user_id != mm:
+           return await query.answer("No, You Can Edit's Others!") 
+     else:
+         await query.message.edit_text("Settings ⚙️",reply_markup=InlineKeyboardMarkup(
+         [[InlineKeyboardButton("Edit pfp", callback_data=f"edit_pfp:{user_id}"),]]),)
 
       
