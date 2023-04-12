@@ -23,7 +23,7 @@ async def dice(_, message):
     if value == 1:
          bucks = 10000
     else:
-         await message.reply_text("🥸 Better Luck Next Time.")
+         await xx.reply_text("🥸 Better Luck Next Time.", quote=True)
          await asyncio.sleep(10*60)
          dice_users.remove(user_id)
          return 
@@ -54,7 +54,7 @@ async def dart(_, message):
     if value == 6:
          bucks = 10000
     else:
-         await message.reply_text("🥸 Better Luck Next Time.")
+         await xx.reply_text("🥸 Better Luck Next Time.", quote=True)
          await asyncio.sleep(10*60)
          dart_users.remove(user_id)
          return 
@@ -85,7 +85,7 @@ async def football(_, message):
     if value != 1 and value != 2:
          bucks = 10000
     else:
-         await message.reply_text("🥸 Better Luck Next Time.")
+         await xx.reply_text("🥸 Better Luck Next Time.", quote=True)
          await asyncio.sleep(10*60)
          football_users.remove(user_id)
          return 
@@ -115,7 +115,7 @@ async def basketball(_, message):
     if value not in [1,2,3]:
          bucks = 10000
     else:
-         await message.reply_text("🥸 Better Luck Next Time.")
+         await xx.reply_text("🥸 Better Luck Next Time.", quote=True)
          await asyncio.sleep(10*60)
          basketball_users.remove(user_id)
          return 
@@ -141,12 +141,12 @@ async def bowling(_, message):
     if user_id in bowling_users:
         return await message.reply_text("Try Later You Already Played! Next One Would Be Takes 10Minutes")
     bowling_users.append(user_id)    
-    xx = await bot.send_dice(chat_id=chat_id, emoji="🏀")
+    xx = await bot.send_dice(chat_id=chat_id, emoji="🎳")
     value = int(xx.dice.value)
     if value == 6:
          bucks = 10000
     else:
-         await message.reply_text("🥸 Better Luck Next Time.")
+         await xx.reply_text("🥸 Better Luck Next Time.", quote=True)
          await asyncio.sleep(10*60)
          bowling_users.remove(user_id)
          return 
