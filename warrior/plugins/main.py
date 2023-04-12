@@ -8,6 +8,9 @@ from warrior.database.profile import add_profile_to_users
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
+
+EDIT_PFP = []
+
 async def ask_to_dm_first(message):
      username = (await bot.get_me()).username
      return await message.reply_text(
@@ -60,8 +63,6 @@ async def settings(_, query):
          [[InlineKeyboardButton("🧑‍🏫 Edit Profile", callback_data=f"edit_pfp:{user_id}"),]]),)
 
 
-edit_pfp = []
-
 @bot.on_callback_query(filters.regex("edit_pfp"))
 async def edit_pfp(_, query):   
        user_id = query.from_user.id
@@ -71,23 +72,23 @@ async def edit_pfp(_, query):
            return await query.answer("No, cannot do this!")
        else:
            await query.message.delete()
-           edit_pfp.append(user_id)           
+           EDIT_PFP.append(user_id)           
            yy = await query.message.reply("Reply With Photo:\n To Save Profile! ")
            asyncio.sleep(30)
            await yy.edit_text("TimeOut Try Again. 🚫")
-           edit_pfp.remove(user_id)
+           EDIT_PFP.remove(user_id)
            return 
 
 @bot.on_message(filters.photo & filters.reply)
 async def set_pfp(_, message):
      user_id = message.from_user.id
-     if user_id in edit_pfp:
+     if user_id in EDIT_PFP:
             profile= await message.download()   
             await add_profile_to_users(user_id, profile)
             await message.reply_text("Successfully Profile Saved! ✅")  
-            edit_pfp.remove(user_id)
+            EDIT_PFP.remove(user_id)
      else:
          return 
      
 
-
+#ok
