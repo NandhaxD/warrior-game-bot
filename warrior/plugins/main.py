@@ -76,7 +76,10 @@ async def edit_pfp(_, query):
            yy = await query.message.reply("Reply With Photo:\n To Save Profile! ")
            await asyncio.sleep(30)
            await yy.edit_text("Timeout Try Again. 🚫")
-           EDIT_PFP.remove(user_id)
+           try:
+              EDIT_PFP.remove(user_id)
+           except: 
+               pass
            return 
 
 @bot.on_message(filters.photo & filters.reply)
@@ -91,4 +94,4 @@ async def set_pfp(_, message):
          return 
      
 
-#ok
+
