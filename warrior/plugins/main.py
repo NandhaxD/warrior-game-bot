@@ -62,6 +62,22 @@ async def settings(_, query):
 
 edit_pfp = []
 
+@bot.on_callback_query(filters.regex("edit_pfp"))
+async def edit_pfp(_, query):   
+       user_id = query.from_user.id
+       chat_id = query.message.chat.id
+       mm = int(query.data.split(":")[1])
+       if user_id != mm:
+           return await query.answer("No, cannot do this!")
+       else:
+           await query.message.delete()
+           edit_pfp.append(user_id)           
+           yy = await query.message.reply("Reply With Photo:\n To Save Profile! ")
+           asyncio.sleep(30)
+           await yy.edit_text("TimeOut Try Again. 🚫")
+           edit_pfp.remove(user_id)
+           return 
+
 @bot.on_message(filters.photo & filters.reply)
 async def set_pfp(_, message):
      user_id = message.from_user.id
@@ -74,18 +90,4 @@ async def set_pfp(_, message):
          return 
      
 
-@bot.on_callback_query(filters.regex("edit_pfp"))
-async def edit_pfp(_, query):   
-       user_id = query.from_user.id
-       chat_id = query.message.chat.id
-       mm = int(query.data.split(":")[1])
-       if user_id != mm:
-           return await query.answer("No, cannot do this!")
-       else:
-           await query.message.delete()
-           edit_pfp.append(user_id)           
-           yy = await query.message.reply("Reply To. This Message With Photo To Save Profile!")
-           asyncio.sleep(30)
-           await yy.edit_text("TimeOut Try Again. 🚫")
-           edit_pfp.remove(user_id)
-           return 
+
