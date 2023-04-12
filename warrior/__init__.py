@@ -1,6 +1,7 @@
 import os
 import logging
 
+import pyromod.listen
 
 from pyrogram import Client 
 from pymongo import MongoClient
