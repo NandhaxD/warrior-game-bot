@@ -39,16 +39,15 @@ async def start(_, message):
 @bot.on_message(filters.command("record", prefix))
 async def record(_, message):
     user_id = message.from_user.id
-    default_pfp = "https://graph.org//file/6b06c18453ebb6e6005da.jpg"
     if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message=message)
     else:
+        profile = await get_profile_from_users(user_id)
         bucks = await get_bucks_from_users(user_id)
         string = f"📛 <b>Name</b>: {message.from_user.mention}\n"
         string += f"💰 <b>Bucks</b>: {bucks}\n"
-        if (await get_profile_from_users(user_id):
-        await message.reply_photo(
-            photo=default_pfp, caption=string, parse_mode=enums.ParseMode.HTML, 
+        return await message.reply_photo(
+            photo=profile, caption=string, parse_mode=enums.ParseMode.HTML, 
             reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Settings ⚙️", callback_data=f"settings:{user_id}"),]]),)
 
