@@ -18,8 +18,11 @@ async def ask_to_dm_first(message):
 async def start(_, message):
       user_id = int(message.from_user.id)
       if message.chat.type == enums.ChatType.PRIVATE:
-             if message.text.split(None,1)[1] == "help":                    
-                    return message.reply_text("*help message*")
+             try:
+                 xx = message.text.split(None,1)[1]
+             except: pass
+             if xx == "help":                    
+                 return await message.reply_text("*help message*")
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
                     return await message.reply_text("You Have Been Added To My Database. That Case You Got 500 Bucks.") 
