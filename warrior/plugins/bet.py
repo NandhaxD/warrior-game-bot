@@ -21,7 +21,7 @@ async def bet(_, message):
         return await message.reply_text("You Cannot Do This! 🚫")
     hand = await get_bucks_from_users(user_id)
     if hand == spend or hand > spend:
-         bucks = random.randrange(3*-spend, 4*spend)
+         bucks = random.randint(3*-spend, 4*spend)
          await add_bucks_to_db(user_id=user_id,
             bucks=bucks)
          kk = await get_bucks_from_users(user_id)
