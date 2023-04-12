@@ -20,14 +20,14 @@ async def bet(_, message):
     if message.text.split(None,1)[1][0] == "-":
         return await message.reply_text("You Cannot Do This! 🚫")
     hand = await get_bucks_from_users(user_id)
-    if hand > spend:
+    if hand == spend or hand > spend:
          bucks = random.randrange(3*-spend, 4*spend)
          await add_bucks_to_db(user_id=user_id,
             bucks=bucks)
          kk = await get_bucks_from_users(user_id)
          if str(bucks)[0] == "-":
-             return await message.reply_text(f"You lose 🚫: **{bucks}**\nTotal Bucks 💰: **{kk}**")
+             return await message.reply_text(f"You Lose 🚫: **{bucks}**\nTotal Bucks 💰: **{kk}**")
          else:
-             return await message.reply_text(f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
+             return await message.reply_text(f"You Won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     else:
-       return await message.reply_text("You Don't Have That Much Bucks! 💰")
+       return await message.reply_text("You Don't Have That Much Bucks To Bet! 💰")
