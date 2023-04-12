@@ -1,4 +1,5 @@
 
+import asyncio
 
 from warrior import bot, prefix 
 from warrior.database.main import add_users_to_db, get_users_list
@@ -56,9 +57,20 @@ async def settings(_, query):
            return await query.answer("No, You Can Edit's Others!") 
      else:
          await query.message.edit_text("Settings ⚙️",reply_markup=InlineKeyboardMarkup(
-         [[InlineKeyboardButton("Edit pfp", callback_data=f"edit_pfp:{user_id}"),]]),)
+         [[InlineKeyboardButton("🧑‍🏫 Edit Profile", callback_data=f"edit_pfp:{user_id}"),]]),)
 
 
+edit_pfp = []
+
+@bot.on_message(filters.photo & filters.reply)
+async def set_pfp(_, message):
+     user_id = message.reply_to_message.from_user.id
+     if user_id in edit_pfp:
+            profile= await message.download()   
+            await add_profile_to_users(user_id, profile)
+            await message.reply_text("Successfully Profile Saved! ✅")  
+            edit_pfp.remove(user_id)
+     
 
 @bot.on_callback_query(filters.regex("edit_pfp"))
 async def edit_pfp(_, query):   
@@ -68,11 +80,8 @@ async def edit_pfp(_, query):
        if user_id != mm:
            return await query.answer("No, cannot do this!")
        else:
-           try:
-              ask = await query.message.chat.ask("Send Media To Save! 🥸", timeout=30)
-           except Exception as e: return await query.message.edit_text("Error: "+str(e))
-           profile = await ask.download()
-           await add_profile_to_users(user_id=user_id, profile=profile)
-           return await query.message.edit_text("Successfully Profile Saved! ✅")
-           
-  
+           await query.message.delete()
+           edit_pfp.append(user_id)           
+           yy = await query.message.reply("Reply To This Message With Photo To Save Profile!")
+           asyncio.sleep(30)
+           return await yy.edit_text("Try Again Within 30sec.")
