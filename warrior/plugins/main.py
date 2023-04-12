@@ -54,4 +54,21 @@ async def settings(_, query):
          await query.message.edit_text("Settings ⚙️",reply_markup=InlineKeyboardMarkup(
          [[InlineKeyboardButton("Edit pfp", callback_data=f"edit_pfp:{user_id}"),]]),)
 
-      
+
+
+@bot.on_callback_query(filters.regex("edit_pfp"))
+async def edit_pfp(_, query):   
+       user_id = query.from_user.id
+       chat_id = query.message.chat.id
+       mm = int(query.data.split(":")[1])
+       if user_id != mm:
+           return await query.answer("No, You Can Edit's Others!")
+       else:
+           try:
+              ask = await bot.ask(chat_id=chat_id, filters=filters.photo & filters.user(user_id), timeout=30)
+           except: return await query.message.edit_text("Time Up Do Again! 🚫")
+           profile = await ask.download()
+           await add_profile_to_users(profile)
+           return await query.message.edit_text("Successfully Profile Saved! ✅")
+           
+  
