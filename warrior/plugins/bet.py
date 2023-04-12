@@ -25,6 +25,6 @@ async def bet(_, message):
          await add_bucks_to_db(user_id=user_id,
             bucks=bucks)
          kk = await get_bucks_from_user(user_id)
-         return await message.reply_text("You got : **{bucks}**\nTotal Bucks 💰: **{kk}**")
+         return await message.reply_text(f"You got : **{bucks}**\nTotal Bucks 💰: **{kk}**")
     else:
        return await message.reply_text("You Spend. More Then You Hand!")
