@@ -9,6 +9,6 @@ async def dice(_, message):
     bucks = 1000000000
     await kora(user_id=user_id, bucks=bucks)
     await bot.send_message(chat_id, "Sucessfully Added !")
-      else:
+    else:
         await bot.send_message(chat_id, "You Can't Use !")
     
