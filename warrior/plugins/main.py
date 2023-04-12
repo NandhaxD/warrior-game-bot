@@ -68,7 +68,7 @@ async def edit_pfp(_, query):
               ask = await bot.ask(chat_id=chat_id, filters=filters.photo & filters.user(user_id), timeout=30)
            except: return await query.message.edit_text("Time Up Do Again! 🚫")
            profile = await ask.download()
-           await add_profile_to_users(profile)
+           await add_profile_to_users(user_id=user_id, profile=profile)
            return await query.message.edit_text("Successfully Profile Saved! ✅")
            
   
