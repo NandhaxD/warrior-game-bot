@@ -64,12 +64,14 @@ edit_pfp = []
 
 @bot.on_message(filters.photo & filters.reply)
 async def set_pfp(_, message):
-     user_id = message.reply_to_message.from_user.id
+     user_id = message.from_user.id
      if user_id in edit_pfp:
             profile= await message.download()   
             await add_profile_to_users(user_id, profile)
             await message.reply_text("Successfully Profile Saved! ✅")  
             edit_pfp.remove(user_id)
+     else:
+         return 
      
 
 @bot.on_callback_query(filters.regex("edit_pfp"))
@@ -82,6 +84,8 @@ async def edit_pfp(_, query):
        else:
            await query.message.delete()
            edit_pfp.append(user_id)           
-           yy = await query.message.reply("Reply To This Message With Photo To Save Profile!")
+           yy = await query.message.reply("Reply To. This Message With Photo To Save Profile!")
            asyncio.sleep(30)
-           return await yy.edit_text("Try Again Within 30sec.")
+           await yy.edit_text("TimeOut Try Again. 🚫")
+           edit_pfp.remove(user_id)
+           return 
