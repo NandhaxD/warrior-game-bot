@@ -132,7 +132,7 @@ async def basketball(_, message):
 
 
 bowling_users = []
-@bot.on_message(filters.command("bowling", prefix))
+@bot.on_message(filters.command("bowl", prefix))
 async def bowling(_, message):
     user_id = message.from_user.id
     chat_id = message.chat.id
