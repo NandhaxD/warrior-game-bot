@@ -3,6 +3,7 @@
 from warrior import bot, prefix 
 from warrior.database.main import add_users_to_db, get_users_list
 from warrior.database.bucks import get_bucks_from_users
+from warrior.database.profile import add_profile_to_users
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
