@@ -21,10 +21,13 @@ async def bet(_, message):
         return await message.reply_text("What? Why Are You Bet Minis Bucks, Only Plus Is Allowed!")
     hand = await get_bucks_from_users(user_id)
     if hand > spend:
-         bucks = random.randrange(2*-spend, 3*spend)
+         bucks = random.randrange(3*-spend, 4*spend)
          await add_bucks_to_db(user_id=user_id,
             bucks=bucks)
          kk = await get_bucks_from_users(user_id)
-         return await message.reply_text(f"You got : **{bucks}**\nTotal Bucks 💰: **{kk}**")
+         if str(bucks)[0] == "-":
+             return await message.reply_text(f"You lose 🚫: **{bucks}**\nTotal Bucks 💰: **{kk}**")
+         else:
+             return await message.reply_text(f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     else:
-       return await message.reply_text("You Spend. More Then You Hand!")
+       return await message.reply_text("You Don't Have That Much Bucks! 💰")
