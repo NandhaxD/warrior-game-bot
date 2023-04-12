@@ -1,6 +1,8 @@
 pyrogram
-tgcrypto
-requests
 pymongo
 pymongo[srv]
+pyromod
+tgcrypto
+telegraph 
+requests
 asyncio
