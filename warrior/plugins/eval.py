@@ -4,7 +4,7 @@ from contextlib import redirect_stdout
 from subprocess import getoutput as run
 
 from warrior import bot as app, prefix 
-
+from pyrogram import filters
 
 
 #pip
