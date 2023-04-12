@@ -69,7 +69,7 @@ async def edit_pfp(_, query):
            return await query.answer("No, cannot do this!")
        else:
            try:
-              ask = await bot.ask(chat_id=chat_id, text="Reply Me with Media", filters=filters.photo & filters.user(user_id), timeout=30)
+              ask = await bot.ask(chat_id=chat_id, text="Reply Me with Media", user_id=user_id, message_id=message.id, timeout=30)
            except Exception as e: return await query.message.edit_text("Error: "+str(e))
            profile = await ask.download()
            await add_profile_to_users(user_id=user_id, profile=profile)
