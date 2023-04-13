@@ -10,7 +10,6 @@ from pyrogram import filters
 
 won_users = []
 
-
 async def winners_bucks(user_id: int, bucks_spend: int):
       count = won_users.count(user_id)
       bucks = bucks_spend*int(count)+2
@@ -34,7 +33,11 @@ async def bet(_, message):
         if key.casefold() == "lose":
               await add_bucks_to_db(user_id, -bucks_spend)
               bucks = await get_bucks_from_users(user_id)
-              return await message.reply_text(f"🚫 You Lose {bucks}. Your Current Bucks Balance `{bucks}`.")
+              await message.reply_text(f"🚫 You Lose {bucks}. Your Current Bucks Balance `{bucks}`.")
+              x = [m for m in won_users if m!= user_id]
+              won_users.clear()
+              cc = won_users + x
+              return 
         elif key.casefold() == "pro":
                won_bucks = bucks_spend*10
                await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
