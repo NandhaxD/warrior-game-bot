@@ -13,7 +13,7 @@ won_users = []
 
 async def winners_bucks(user_id: int, bucks_spend: int):
       count = won_users.count(user_id)
-      bucks = bucks_spend*count+2
+      bucks = bucks_spend*int(count)+2
       return bucks
 
 @bot.on_message(filters.command("bet", prefix))
@@ -41,7 +41,7 @@ async def bet(_, message):
                return await message.reply_text(f"🎊 Pro Bet UwU 🎊. ✨ You Won {won_bucks}, Your Current Bucks Balance `{bucks}`.", quote=True)
         elif key.casefold() == "won":
               won_users.append(user_id)
-              won_bucks = winners_bucks(user_id=user_id, bucks_spend=bucks_spend)
+              won_bucks = await winners_bucks(user_id=user_id, bucks_spend=bucks_spend)
               await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
               bucks = await get_bucks_from_users(user_id)
               return await message.reply_text(f"🎊 You Won: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
