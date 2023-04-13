@@ -90,7 +90,7 @@ async def set_pfp(_, message):
      user_id = message.from_user.id
      if user_id in EDIT_PFP:
             profile= await message.download()   
-            await add_profile_to_users(user_id, profile)
+            await add_profile_to_users(message, user_id, profile)
             await message.reply_to_message.delete()
             await message.reply_text("Successfully Profile Saved! ✅")  
             EDIT_PFP.remove(user_id)
