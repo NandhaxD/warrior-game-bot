@@ -42,13 +42,14 @@ async def bet(_, message):
                won_bucks = bucks_spend*10
                await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
                bucks = await get_bucks_from_users(user_id)
-               return await message.reply_text(f"🎊 Pro Bet UwU 🎊. ✨ You Won {won_bucks}, Your Current Bucks Balance `{bucks}`.", quote=True)
+               return await message.reply_text(f"🎊 Pro Bet UwU 🎊. 🎊 You Won {won_bucks}, ✨ Your Current Bucks Balance `{bucks}`.", quote=True)
         elif key.casefold() == "won":
               won_users.append(user_id)
               won_bucks = await winners_bucks(user_id=user_id, bucks_spend=bucks_spend)
               await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
               bucks = await get_bucks_from_users(user_id)
-              return await message.reply_text(f"🎊 You Won: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
+              count = won_users.count(user_id)
+              return await message.reply_text(f"🎊 You Won [`{count}`]: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
     else:
         return await message.reply_text("You Don't Have That Much Bucks! To Know Your Bucks Balance Click /record.")
 
