@@ -36,7 +36,7 @@ async def start(_, message):
           return await message.reply_text("*your start message text here*")
 
 
-@bot.on_message(filters.command("record", prefix))
+@bot.on_message(filters.command("profile", prefix))
 async def record(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
