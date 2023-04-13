@@ -18,12 +18,12 @@ async def winners_bucks(user_id: int, bucks_spend: int):
 
 @bot.on_message(filters.command("bet", prefix))
 async def bet(_, message): 
-      user_id = message.from_user.id
-      if user_id not in (await get_users_list()):
+    user_id = message.from_user.id
+    if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message)
-      try:
+    try:
           bucks_spend = int(message.text.split(None,1)[1])
-      except:
+    except:
           return await message.reply_text("🥸 Example: /bet 100", quote=True)
     if message.text.split(None,1)[1][0] == "-":
         return await message.reply_text("No!", quote=True)
