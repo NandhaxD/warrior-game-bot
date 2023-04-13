@@ -33,7 +33,7 @@ async def bet(_, message):
         if key.casefold() == "lose":
               await add_bucks_to_db(user_id, -bucks_spend)
               bucks = await get_bucks_from_users(user_id)
-              await message.reply_text(f"🚫 You Lose {bucks}. Your Current Bucks Balance `{bucks}`.")
+              await message.reply_text(f"🚫 You Lose {bucks_spend}. Your Current Bucks Balance `{bucks}`.")
               x = [m for m in won_users if m!= user_id]
               won_users.clear()
               cc = won_users + x
