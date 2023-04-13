@@ -22,9 +22,9 @@ async def bet(_, message):
       if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message)
       try:
-       bucks_spend = int(message.text.split(None,1)[1])
-    except:
-         return await message.reply_text("🥸 Example: /bet 100", quote=True)
+          bucks_spend = int(message.text.split(None,1)[1])
+      except:
+          return await message.reply_text("🥸 Example: /bet 100", quote=True)
     if message.text.split(None,1)[1][0] == "-":
         return await message.reply_text("No!", quote=True)
     bucks_balance = await get_bucks_from_users(user_id)
