@@ -3,7 +3,7 @@ import asyncio
 
 from warrior import bot, prefix 
 from warrior.database.main import add_users_to_db, get_users_list
-from warrior.database.bucks import get_bucks_from_users
+from warrior.database.bucks import get_bucks_from_users, add_bucks_to_db
 from warrior.database.profile import add_profile_to_users, get_profile_from_users
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
@@ -70,6 +70,9 @@ async def edit_pfp(_, query):
        mm = int(query.data.split(":")[1])
        if user_id != mm:
            return await query.answer("No, cannot do this!")
+       bucks = await get_bucks_from_users(user_id)
+       if bucks < 1000:
+             return await query.answer("🚫 You Need 1000 Bucks To Change Your Profile!", show_alert=True)
        else:
            await query.message.delete()
            EDIT_PFP.append(user_id)           
@@ -91,8 +94,11 @@ async def set_pfp(_, message):
      if user_id in EDIT_PFP:
             profile= await message.download()   
             await add_profile_to_users(message, user_id, profile)
+            await add_bucks_to_db(user_id, -1000)
             await message.reply_to_message.delete()
-            await message.reply_text("Successfully Profile Saved! ✅")  
+            bucks = await get_bucks_from_users(user_id)
+            await message.reply_text("Successfully Profile Saved! ✅\n  💰 Your Current Bucks Balance: {}")  
             EDIT_PFP.remove(user_id)
      else:
          return 
+#k
