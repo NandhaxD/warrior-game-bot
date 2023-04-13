@@ -1,4 +1,4 @@
-
+from json import JSONDecodeError
 from telegraph import upload_file
 
 async def telegraph(message, path):
