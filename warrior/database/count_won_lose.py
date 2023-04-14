@@ -42,3 +42,9 @@ async def get_won_count(user_id: int):
        x = db.find_one(string)
        counts = int(x["won_count"])
        return counts
+
+async def get_lose_count(user_id: int):
+       string = {"user_id": user_id}
+       x = db.find_one(string)
+       counts = int(x["lose_count"])
+       return counts
