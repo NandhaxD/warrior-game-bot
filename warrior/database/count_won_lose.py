@@ -29,3 +29,10 @@ async def add_lose_count(user_id: int, lose_count: +1):
       filter = {"user_id": user_id}
       update = {"$set": {"lose_count": lose_count}}
       db.update_one(filter, update)
+
+
+async def get_won_count(user_id: int):
+       string = {"user_id": user_id}
+       x = db.find_one(string)
+       counts = int(x["won_count"])
+       return counts
