@@ -5,6 +5,7 @@ from warrior import bot, prefix
 from warrior.plugins.main import ask_to_dm_first
 from warrior.database.main import get_users_list
 from warrior.database.bucks import add_bucks_to_db, get_bucks_from_users
+from warrior.database.count_won_lose import add_won_count, add_lose_count
 from pyrogram import filters
 
 
@@ -31,6 +32,7 @@ async def bet(_, message):
         mm = ["lose","lose","won", "pro"]
         key = random.choice(mm)
         if key.casefold() == "lose":
+              await add_lose_count(user_id=user_id, lose_count=+1)
               await add_bucks_to_db(user_id, -bucks_spend)
               bucks = await get_bucks_from_users(user_id)
               await message.reply_text(f"🚫 You Lose {bucks_spend}. Your Current Bucks Balance `{bucks}`.")
@@ -44,6 +46,7 @@ async def bet(_, message):
                bucks = await get_bucks_from_users(user_id)
                return await message.reply_text(f"🎊 Pro Bet UwU 🎊. 🎊 You Won {won_bucks}, ✨ Your Current Bucks Balance `{bucks}`.", quote=True)
         elif key.casefold() == "won":
+              await add_won_count(user_id=user_id, won_count=+1)
               won_users.append(user_id)
               won_bucks = await winners_bucks(user_id=user_id, bucks_spend=bucks_spend)
               await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
