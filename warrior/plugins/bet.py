@@ -24,12 +24,12 @@ async def bet(_, message):
     try:
           bucks_spend = int(message.text.split(None,1)[1])
     except:
-          return await message.reply_text("🥸 Example: /bet 100", quote=True)
+          return await message.reply_text("🆘 Example: /bet 100", quote=True)
     if message.text.split(None,1)[1][0] == "-":
         return await message.reply_text("No!", quote=True)
     bucks_balance = await get_bucks_from_users(user_id)
     if bucks_balance > bucks_spend or bucks_balance == bucks_spend:
-        mm = ["lose","lose","won", "pro"]
+        mm = ["lose","won","lose","pro","lose"]
         key = random.choice(mm)
         if key.casefold() == "lose":
               await add_lose_count(user_id=user_id, lose_count=+1)
@@ -52,7 +52,7 @@ async def bet(_, message):
               await add_bucks_to_db(user_id=user_id, bucks=won_bucks)
               bucks = await get_bucks_from_users(user_id)
               count = won_users.count(user_id)
-              return await message.reply_text(f"🎊 You Won [`{count}`]: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
+              return await message.reply_text(f"🎊 You Won [`{count}`x]: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
     else:
         return await message.reply_text("You Don't Have That Much Bucks! To Know Your Bucks Balance Click /record.")
 
