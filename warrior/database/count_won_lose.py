@@ -12,9 +12,9 @@ async def add_won_count(user_id: int, won_count: +1):
          update = {"$set": {"won_count": 1}}
          db.update_one(filter, update)
       won_count = int(yy)+1
-          filter = {"user_id": user_id}
-          update = {"$set": {"won_count": won_count}}
-          db.update_one(filter, update)
+      filter = {"user_id": user_id}
+      update = {"$set": {"won_count": won_count}}
+      db.update_one(filter, update)
 
 
 async def add_lose_count(user_id: int, lose_count: +1):
@@ -26,6 +26,6 @@ async def add_lose_count(user_id: int, lose_count: +1):
          update = {"$set": {"lose_count": 1}}
          db.update_one(filter, update)
       lose_count = int(yy)+1
-          filter = {"user_id": user_id}
-          update = {"$set": {"lose_count": lose_count}}
-          db.update_one(filter, update)
+      filter = {"user_id": user_id}
+      update = {"$set": {"lose_count": lose_count}}
+      db.update_one(filter, update)
