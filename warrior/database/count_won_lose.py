@@ -11,6 +11,9 @@ async def add_won_count(user_id: int, won_count: int):
           filter = {"user_id": user_id}
           update = {"$set": {"won_count": 1}}
           db.update_one(filter, update)
+
+      x = db.find_one({"user_id": user_id})
+      yy = x["won_count"]
       won_count = int(yy)+1
       filter = {"user_id": user_id}
       update = {"$set": {"won_count": won_count}}
@@ -21,10 +24,13 @@ async def add_lose_count(user_id: int, lose_count: +1):
       x = db.find_one({"user_id": user_id})
       try:
          yy = x["lose_count"]
-      except:
-         filter = {"user_id": user_id}
-         update = {"$set": {"lose_count": 1}}
-         db.update_one(filter, update)
+      except UnboundLocalError:
+           filter = {"user_id": user_id}
+           update = {"$set": {"lose_count": 1}}
+           db.update_one(filter, update)
+
+      x = db.find_one({"user_id": user_id})
+      yy = x["lose_count"]
       lose_count = int(yy)+1
       filter = {"user_id": user_id}
       update = {"$set": {"lose_count": lose_count}}
