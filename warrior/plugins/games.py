@@ -23,7 +23,8 @@ async def dice(_, message):
     if value == 1:
          bucks = 10000
     else:
-         await message.reply_text(f"🥸 [Better Luck Next Time.](xx.link)", quote=True)
+         await asyncio.sleep(4)
+         await message.reply_text(f"🥸 [Better Luck Next Time.]({xx.link})", quote=True)
          await asyncio.sleep(10*60)
          dice_users.remove(user_id)
          return 
@@ -54,7 +55,8 @@ async def dart(_, message):
     if value == 6:
          bucks = 10000
     else:
-         await message.reply_text(f"🥸 [Better Luck Next Time.](xx.link)", quote=True)
+         await asyncio.sleep(4)
+         await message.reply_text(f"🥸 [Better Luck Next Time.]({xx.link})", quote=True)
          await asyncio.sleep(10*60)
          dart_users.remove(user_id)
          return 
@@ -85,7 +87,8 @@ async def football(_, message):
     if value != 1 and value != 2:
          bucks = 10000
     else:
-         await message.reply_text(f"🥸 [Better Luck Next Time.](xx.link)", quote=True)
+         await asyncio.sleep(4)
+         await message.reply_text(f"🥸 [Better Luck Next Time.]({xx.link})", quote=True)
          await asyncio.sleep(10*60)
          football_users.remove(user_id)
          return 
@@ -115,7 +118,8 @@ async def basketball(_, message):
     if value not in [1,2,3]:
          bucks = 10000
     else:
-         await message.reply_text(f"🥸 [Better Luck Next Time.](xx.link)", quote=True)
+         await asyncio.sleep(4)
+         await message.reply_text(f"🥸 [Better Luck Next Time.]({xx.link})", quote=True)
          await asyncio.sleep(10*60)
          basketball_users.remove(user_id)
          return 
@@ -146,7 +150,8 @@ async def bowling(_, message):
     if value == 6:
          bucks = 10000
     else:
-         await message.reply_text(f"🥸 [Better Luck Next Time.](xx.link)", quote=True)
+         await asyncio.sleep(4)
+         await message.reply_text(f"🥸 [Better Luck Next Time.]({xx.link})", quote=True)
          await asyncio.sleep(10*60)
          bowling_users.remove(user_id)
          return 
