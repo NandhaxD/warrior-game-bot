@@ -3,14 +3,14 @@ from warrior import DATABASE
 
 db = DATABASE["MAIN"]
 
-async def add_won_count(user_id: int, won_count: +1):
+async def add_won_count(user_id: int, won_count: int):
       x = db.find_one({"user_id": user_id})
       try:
          yy = x["won_count"]
-      except:
-         filter = {"user_id": user_id}
-         update = {"$set": {"won_count": 1}}
-         db.update_one(filter, update)
+      except UnboundLocalError:
+          filter = {"user_id": user_id}
+          update = {"$set": {"won_count": 1}}
+          db.update_one(filter, update)
       won_count = int(yy)+1
       filter = {"user_id": user_id}
       update = {"$set": {"won_count": won_count}}
