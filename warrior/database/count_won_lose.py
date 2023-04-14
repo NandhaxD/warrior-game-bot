@@ -3,7 +3,7 @@ from warrior import DATABASE
 
 db = DATABASE["MAIN"]
 
-async add_won_count(user_id: int, won_count):
+async def add_won_count(user_id: int, won_count: +1):
       x = db.find_one({"user_id": user_id})
       try:
          yy = x["won_count"]
@@ -17,7 +17,7 @@ async add_won_count(user_id: int, won_count):
           db.update_one(filter, update)
 
 
-async add_lose_count(user_id: int, lose_count):
+async def add_lose_count(user_id: int, lose_count: +1):
       x = db.find_one({"user_id": user_id})
       try:
          yy = x["lose_count"]
