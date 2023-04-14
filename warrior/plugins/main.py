@@ -47,7 +47,7 @@ async def record(_, message):
         bucks = await get_bucks_from_users(user_id)
         won_count = await get_won_count(user_id)
         string = f"📛 <b>Name</b>: {message.from_user.mention}\n"
-        string += f"✨ <b>Won</b>: {won_count}\n"
+        string += f"✨ <b>Won count</b>: {won_count}\n"
         string += f"💰 <b>Bucks</b>: {bucks}\n"
         return await message.reply_photo(
             photo=profile, caption=string, parse_mode=enums.ParseMode.HTML, 
