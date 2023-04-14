@@ -13,7 +13,7 @@ won_users = []
 
 async def winners_bucks(user_id: int, bucks_spend: int):
       count = won_users.count(user_id)
-      bucks = bucks_spend*int(count)+2
+      bucks = bucks_spend*int(count)+1
       return bucks
 
 @bot.on_message(filters.command("bet", prefix))
