@@ -38,8 +38,8 @@ async def start(_, message):
                        return message.reply_text(f"🎊 Congratulations You Have Recived {bucks} 💰", quote=True)                
                  elif message.text.split(None,1)[1] == "help":                    
                       return await message.reply_text("*help message*")
-             except Exception as e:
-                    return await message.reply(e)
+             except:
+                  pass
                   
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
