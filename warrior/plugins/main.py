@@ -6,6 +6,7 @@ from warrior.database.main import add_users_to_db, get_users_list
 from warrior.database.bucks import get_bucks_from_users, add_bucks_to_db
 from warrior.database.profile import add_profile_to_users, get_profile_from_users
 from warrior.database.count_won_lose import get_won_count
+from warrior.database.level import get_users_level
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
@@ -38,7 +39,7 @@ async def start(_, message):
 
 
 @bot.on_message(filters.command("profile", prefix))
-async def record(_, message):
+async def profile(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message=message)
@@ -46,8 +47,10 @@ async def record(_, message):
         profile = await get_profile_from_users(user_id)
         bucks = await get_bucks_from_users(user_id)
         won_count = await get_won_count(user_id)
+        level = await get_users_level(user_id)
         string = f"📛 <b>Name</b>: {message.from_user.mention}\n"
         string += f"✨ <b>Won count</b>: {won_count}\n"
+        string += f"⚔️ <b>Level</b>: {level}\n"
         string += f"💰 <b>Bucks</b>: {bucks}\n"
         return await message.reply_photo(
             photo=profile, caption=string, parse_mode=enums.ParseMode.HTML, 
