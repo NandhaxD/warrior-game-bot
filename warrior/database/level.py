@@ -14,13 +14,12 @@ async def add_level_to_db(user_id: int, level: int):
       except KeyError:
           filter = {"user_id": user_id}
           update = {"$set": {"level": 0}}
-          db.update_one(filter, update)
-      
-       mm = db.find_one({"user_id": user_id})
-       lvl = int(mm["level"])+level
-       filter = {"user_id": user_id}
-       update = {"$set": {"level": lvl}}
-       db.update_one(filter, update)
+          db.update_one(filter, update)        
+      mm = db.find_one({"user_id": user_id})
+      lvl = int(mm["level"])+level
+      filter = {"user_id": user_id}
+      update = {"$set": {"level": lvl}}
+      db.update_one(filter, update)
 
 
 
