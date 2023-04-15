@@ -38,7 +38,7 @@ async def get_lottery_bucks(code, user_id: int):
                update = {"$set": {"user_ids": 100}}
                db.update_one(filter, update)
           vv = db.find_one({"code": code})
-          USER_IDS = [vv["user_ids"]]
+          USER_IDS = vv["user_ids"]
           if user_id not in USER_IDS:
                USER_IDS.append(user_id)
                filter = {"code": code}
