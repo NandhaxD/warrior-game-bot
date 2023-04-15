@@ -11,7 +11,7 @@ async def add_lottery_to_db(bucks: int):
     db.insert_one(string)
 
 
-async def remove_lotter_to_db(code: str):
+async def remove_lottery_to_db(code: str):
       string = {"code": code}
       find = db.find_one(string)
       if find:
