@@ -36,7 +36,8 @@ async def start(_, message):
                        bucks = await get_lottery_bucks(code=message.text.split(None,1)[1], user_id=user_id)
                        if bucks != False:
                             await add_bucks_to_db(user_id=user_id, bucks=bucks)
-                            return await message.reply_text(f"🎊 Congratulations 🎊\nYou've Recived {bucks} 💰", quote=True)                
+                            return await message.reply_text(f"🎊 Congratulations 🎊\nYou've Recived {bucks} 💰", quote=True)    
+                       else: return await message.reply_text("⚔️ You've Already Recived This Lottery ⚔️")          
                  elif message.text.split(None,1)[1] == "help":                    
                       return await message.reply_text("*help message*")
              except Exception as e:
