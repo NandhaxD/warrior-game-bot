@@ -13,6 +13,8 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 EDIT_PFP = []
 
+START_IMAGE = "https://i.imgur.com/muInEKC.jpeg"
+
 async def ask_to_dm_first(message):
      username = (await bot.get_me()).username
      return await message.reply_text(
@@ -23,6 +25,7 @@ async def ask_to_dm_first(message):
 @bot.on_message(filters.command("start", prefix))
 async def start(_, message):
       user_id = int(message.from_user.id)
+      mention = message.from_user.mention
       if message.chat.type == enums.ChatType.PRIVATE:
              try:     
                 if message.text.split(None,1)[1] == "help":                    
@@ -31,11 +34,14 @@ async def start(_, message):
                   pass
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
-                    return await message.reply_text("You Have Been Added To My Database. That Case You Got 500 Bucks.") 
+                    return await message.reply_text("You Has Been Added To My Database. That Case You Got 500 Bucks.") 
              else:
-                 return await message.reply_text("*you start message text here*")
-      else:
-          return await message.reply_text("*your start message text here*")
+                 return await message.reply_photo(photo=START_IMAGE, 
+                      caption="<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play?".format(name=mention))
+
+      else:          
+          return await message.reply_photo(photo=START_IMAGE, 
+               caption="<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play?".format(name=mention))
 
 
 @bot.on_message(filters.command("profile", prefix))
