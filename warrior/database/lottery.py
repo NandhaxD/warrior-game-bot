@@ -7,7 +7,7 @@ db = DATABASE["LOTTERY"]
 
 
 async def add_lottery_to_db(bucks: int): 
-    code = uuid.uuid4().hex 
+    code = str(uuid.uuid4().hex)
     string = {"code": code, "bucks": bucks}
     db.insert_one(string)
     return code
