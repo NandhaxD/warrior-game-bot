@@ -22,7 +22,7 @@ async def bet(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message)
-    bet_count = await get_bet_count
+    bet_count = await get_bet_count(user_id)
     kk = await level_system(bet_count)
     mm = await get_users_level(user_id)
     if mm != kk:
