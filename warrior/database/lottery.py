@@ -23,6 +23,6 @@ async def remove_lottery_to_db(code: str):
 
 
 async def get_lottery_code():
-      code = [x["code"] for x in db.find()]
+      code = [x for x in db.find()]
       return code
     
