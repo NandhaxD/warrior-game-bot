@@ -26,10 +26,13 @@ async def get_lottery_code():
       code = [x for x in db.find()]
       return code
     
-async def get_lottery_bucks(code):
-      string = {"code": code}
-      xxx = db.find_one(string)
-      if xxx:
-          return int(xxx["bucks"])
-      else:
+
+async def get_lottery_bucks(code, user_id: int):
+       string = {"code": code, "user_id": user_id}
+       yy = db.find_one(string)
+       if yy:
           return False
+       else:
+           return int(yy["bucks"])
+
+
