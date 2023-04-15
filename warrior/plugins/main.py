@@ -7,6 +7,7 @@ from warrior.database.bucks import get_bucks_from_users, add_bucks_to_db
 from warrior.database.profile import add_profile_to_users, get_profile_from_users
 from warrior.database.count_won_lose import get_won_count
 from warrior.database.level import get_users_level
+from warrior.database.lottery import get_lottery_code, get_lottery_bucks
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
@@ -19,7 +20,7 @@ START_TEXT = "<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. 
 async def ask_to_dm_first(message):
      username = (await bot.get_me()).username
      return await message.reply_text(
-          "Start Me!", reply_markup=InlineKeyboardMarkup([[
+          "Start Me ⬅️", reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Click here!", url=f"t.me/{username}"),]]),)
 
 
@@ -28,10 +29,16 @@ async def start(_, message):
       user_id = int(message.from_user.id)
       mention = message.from_user.mention
       if message.chat.type == enums.ChatType.PRIVATE:
-             try:     
-                if message.text.split(None,1)[1] == "help":                    
-                    return await message.reply_text("*help message*")
-             except: 
+             token = await get_lotterys_code()
+             TOKEN_LIST = [x["code"] for x in token]
+             try:
+                 if str(message.text.split(None,1)[1]) in TOKEN_LIST:
+                      bucks = await get_lottery_bucks(code=message.text.split(None,1)[1])
+                      await add_bucks_to_db(user_id=user_id, bucks=bucks)
+                      return message.reply_text(f"🎊 Congratulations You Have Recived {bucks} 💰", quote=True)                
+                 elif message.text.split(None,1)[1] == "help":                    
+                      return await message.reply_text("*help message*")
+             except:
                   pass
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
