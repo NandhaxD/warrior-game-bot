@@ -9,7 +9,7 @@ async def add_lottery_to_db(bucks: int):
     code = generate_random_string()   
     string = {"code": code, "bucks": bucks}
     db.insert_one(string)
-
+    return code
 
 async def remove_lottery_to_db(code: str):
       string = {"code": code}
