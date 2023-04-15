@@ -30,7 +30,7 @@ async def clear_lottery(_, message):
 @bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228))
 async def get_lotterys(_, message):
        code = await get_lottery_code()
-       string + ""
+       string = ""
        for user in code:
             string += "💰 {bucks}: `{token}`\n".format(bucks=user["bucks"], token=user["code"])
        string += "Currently Available Tokens ✅"
