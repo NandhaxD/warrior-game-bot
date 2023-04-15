@@ -14,7 +14,7 @@ won_users = []
 
 async def winners_bucks(user_id: int, bucks_spend: int):
       count = won_users.count(user_id)
-      bucks = bucks_spend*int(count)+1
+      bucks = bucks_spend*int(count)+2
       return bucks
 
 @bot.on_message(filters.command("bet", prefix))
@@ -27,7 +27,7 @@ async def bet(_, message):
     mm = await get_users_level(user_id)
     if mm != kk:
          await add_level_to_db(user_id, level=kk)
-         await message.reply_text(f"⬆️ You Reached Level {kk}.")
+         await message.reply_text(f"⬆️ You Have Reached Level {kk}.")
     try:
           bucks_spend = int(message.text.split(None,1)[1])
     except:
@@ -61,7 +61,7 @@ async def bet(_, message):
               count = won_users.count(user_id)
               return await message.reply_text(f"🎊 You Won [`{count}`x]: {won_bucks}, ✨ Your Current Balance Bucks {bucks}.", quote=True)
     else:
-        return await message.reply_text("You Don't Have That Much Bucks! To Know Your Bucks Balance Click /record.")
+        return await message.reply_text("You Don't Have This Much Bucks, Check Current Bucks Balance by Tap /profile.")
 
 
 
