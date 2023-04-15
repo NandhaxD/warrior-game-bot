@@ -29,7 +29,7 @@ async def start(_, message):
       user_id = int(message.from_user.id)
       mention = message.from_user.mention
       if message.chat.type == enums.ChatType.PRIVATE:
-             token = await get_lotterys_code()
+             token = await get_lottery_code()
              TOKEN_LIST = [x["code"] for x in token]
              try:
                  if str(message.text.split(None,1)[1]) in TOKEN_LIST:
