@@ -7,7 +7,7 @@ from pyrogram import filters
 
 @bot.on_message(filters.command("generate", prefix) & filters.user(5696053228))
 async def generate_lottery(_, message):
-      username = (await app.get_me()).username
+      username = (await bot.get_me()).username
       try:
           bucks = int(message.text.split(None,1)[1])
       except:
@@ -26,7 +26,7 @@ async def clear_lottery(_, message):
        if kk:
            return await message.reply_text("Successfully lottery token Removed! 🧑‍🏫", quote=True)
        else:
-           return await message.reply_text(f"🚫 No Token Active Has: `{code}`", quote=True)
+           return await message.reply_text(f"🚫 No Tokens Has: `{code}`", quote=True)
 
 
 @bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228))
@@ -35,5 +35,5 @@ async def get_lotterys(_, message):
        string = ""
        for user in code:
             string += "💰 {bucks}: `{token}`\n".format(bucks=user["bucks"], token=user["code"])
-       string += "\nCurrently Available Tokens ✅"
+       string += "\nCurrentl Available Tokens ✅"
        return await message.reply_text(string)
