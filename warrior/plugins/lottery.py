@@ -24,7 +24,7 @@ async def clear_lottery(_, message):
        if kk:
            return await message.reply_text("Successfully lottery token Removed! 🧑‍🏫", quote=True)
        else:
-           return await message.reply_text("🚫 No Token Active Has: `{code}`", quote=True)
+           return await message.reply_text(f"🚫 No Token Active Has: `{code}`", quote=True)
 
 
 @bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228))
