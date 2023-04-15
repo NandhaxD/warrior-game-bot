@@ -14,6 +14,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 EDIT_PFP = []
 
 START_IMAGE = "https://i.imgur.com/muInEKC.jpeg"
+START_TEXT = "<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play? Tap /help for Commands."
 
 async def ask_to_dm_first(message):
      username = (await bot.get_me()).username
@@ -34,14 +35,14 @@ async def start(_, message):
                   pass
              if not user_id in (await get_users_list()):
                     await add_users_to_db(user_id)
-                    return await message.reply_text("You Has Been Added To My Database. That Case You Got 500 Bucks.") 
+                    return await message.reply_text("You Has Been Added To My Database, That Case You Got 500 Bucks 💰.") 
              else:
                  return await message.reply_photo(photo=START_IMAGE, 
-                      caption="<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play?".format(name=mention))
+                      caption=START_TEXT.format(name=mention))
 
       else:          
           return await message.reply_photo(photo=START_IMAGE, 
-               caption="<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play?".format(name=mention))
+               caption=START_TEXT.format(name=mention))
 
 
 @bot.on_message(filters.command("profile", prefix))
@@ -50,6 +51,7 @@ async def profile(_, message):
     if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message=message)
     else:
+        msg = await message.reply_text("Analysing...")
         profile = await get_profile_from_users(user_id)
         bucks = await get_bucks_from_users(user_id)
         won_count = await get_won_count(user_id)
@@ -58,11 +60,11 @@ async def profile(_, message):
         string += f"✨ <b>Won count</b>: {won_count}\n"
         string += f"⚔️ <b>Level</b>: {level}\n"
         string += f"💰 <b>Bucks</b>: {bucks}\n"
-        return await message.reply_photo(
+        await message.reply_photo(
             photo=profile, caption=string, parse_mode=enums.ParseMode.HTML, 
             reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton("Settings ⚙️", callback_data=f"settings:{user_id}"),]]),)
-
+        return await msg.delete()
 
 @bot.on_callback_query(filters.regex("settings"))
 async def settings(_, query):
