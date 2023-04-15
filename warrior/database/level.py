@@ -9,6 +9,7 @@ async def level_system(bet_count: int):
              level = lvl
     return level 
 
+
 async def add_level_to_db(user_id: int, level: int):
       mm = db.find_one({"user_id": user_id})
       try:
@@ -21,6 +22,7 @@ async def add_level_to_db(user_id: int, level: int):
       filter = {"user_id": user_id}
       update = {"$set": {"level": lvl}}
       db.update_one(filter, update)
+
 
 async def get_users_level(user_id: int):
       mm = db.find_one({"user_id": user_id})
