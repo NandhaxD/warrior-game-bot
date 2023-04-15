@@ -28,7 +28,7 @@ async def get_lottery_code():
     
 async def get_lottery_bucks(code):
       string = {"code": code}
-      xxx = db.find(string)
+      xxx = db.find_one(string)
       if xxx:
           return int(xxx["bucks"])
       else:
