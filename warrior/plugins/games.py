@@ -33,6 +33,7 @@ async def dice(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
+    await asyncio.sleep(4)
     await message.reply_text(
         f"You won: **{bucks}**\nTotal bucks: **{kk}**")
     await asyncio.sleep(10*60)
@@ -65,6 +66,7 @@ async def dart(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
+    await asyncio.sleep(4)
     await message.reply_text(
         f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     await asyncio.sleep(10*60)
@@ -97,6 +99,7 @@ async def football(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
+    await asyncio.sleep(4)
     await message.reply_text(
         f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     await asyncio.sleep(10*60)
@@ -128,6 +131,7 @@ async def basketball(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
+    await asyncio.sleep(4)
     await message.reply_text(
         f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     await asyncio.sleep(10*60)
@@ -160,6 +164,7 @@ async def bowling(_, message):
         bucks=bucks)
     kk = await get_bucks_from_users(
             user_id=user_id)
+    await asyncio.sleep(4)
     await message.reply_text(
         f"You won ✅: **{bucks}**\nTotal Bucks 💰: **{kk}**")
     await asyncio.sleep(10*60)
