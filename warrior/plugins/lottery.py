@@ -14,7 +14,7 @@ async def generate_lottery(_, message):
           return await message.reply_text("Example: /generate 1000.\n `This case you are creating a lottery token which has 1000 bucks`")
       code = await add_lottery_to_db(bucks)
       return await message.reply_text(f"🎊 New Lottery Token Arrived! 🎊\n💰 Bucks: `{bucks}`",
-           reply_markup=InlineKeyboardMarkup(InlineKeyboardButton(text=f"💰 {bucks} ⬅️", url=f"t.me/{username}/?start={code}"),),),quote=True)
+           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text=f"💰 {bucks} ⬅️", url=f"t.me/{username}/?start={code}")]]),quote=True)
 
 @bot.on_message(filters.command("clear", prefix) & filters.user(5696053228))
 async def clear_lottery(_, message):
