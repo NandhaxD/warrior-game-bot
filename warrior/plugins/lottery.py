@@ -18,7 +18,7 @@ async def generate_lottery(_, message):
 async def clear_lottery(_, message):
        try:
           code = int(message.text.split(None,1)[1])
-      except:
+       except:
           return await message.reply_text("Example: /clear code.\n`This case are deleting the lottery token in db.`")
       kk = await remove_lottery_to_db(code)
       if kk:
