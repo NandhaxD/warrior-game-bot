@@ -33,9 +33,10 @@ async def start(_, message):
              TOKEN_LIST = [x["code"] for x in token]
              try:
                  if bool(message.text.split(None,1)[1] in TOKEN_LIST):
-                       bucks = await get_lottery_bucks(code=message.text.split(None,1)[1])
-                       await add_bucks_to_db(user_id=user_id, bucks=bucks)
-                       return await message.reply_text(f"🎊 Congratulations You Have Recived {bucks} 💰", quote=True)                
+                       bucks = await get_lottery_bucks(code=message.text.split(None,1)[1], user_id=user_id)
+                       if bucks != False:
+                            await add_bucks_to_db(user_id=user_id, bucks=bucks)
+                            return await message.reply_text(f"🎊 Congratulations You Have Recived {bucks} 💰", quote=True)                
                  elif message.text.split(None,1)[1] == "help":                    
                       return await message.reply_text("*help message*")
              except:
