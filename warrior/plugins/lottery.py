@@ -3,6 +3,7 @@
 from warrior import bot, prefix 
 from warrior.database.lottery import add_lottery_to_db, remove_lottery_to_db, get_lottery_code
 from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
 
 @bot.on_message(filters.command("generate", prefix) & filters.user(5696053228))
