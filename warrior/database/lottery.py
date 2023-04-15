@@ -1,7 +1,6 @@
 
 import uuid
 from warrior import DATABASE
-from warrior.helper.code_generate import generate_random_string 
 
 db = DATABASE["LOTTERY"]
 
