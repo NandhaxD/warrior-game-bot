@@ -26,7 +26,7 @@ async def get_lottery_code():
       code = [x for x in db.find()]
       return code
     
-async def get_lotery_bucks(code):
+async def get_lottery_bucks(code):
       string = {"code": code}
       xxx = db.find(string)
       if xxx:
