@@ -33,5 +33,5 @@ async def get_lotterys(_, message):
        string = ""
        for user in code:
             string += "💰 {bucks}: `{token}`\n".format(bucks=user["bucks"], token=user["code"])
-       string += "Currently Available Tokens ✅"
+       string += "\nCurrently Available Tokens ✅"
        return await message.reply_text(string)
