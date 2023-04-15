@@ -20,11 +20,11 @@ async def clear_lottery(_, message):
           code = int(message.text.split(None,1)[1])
        except:
           return await message.reply_text("Example: /clear code.\n`This case are deleting the lottery token in db.`")
-      kk = await remove_lottery_to_db(code)
-      if kk:
-          return await message.reply_text("Successfully lottery token Removed! 🧑‍🏫", quote=True)
-      else:
-         return await message.reply_text("🚫 No Token Active Has: `{code}`", quote=True)
+       kk = await remove_lottery_to_db(code)
+       if kk:
+           return await message.reply_text("Successfully lottery token Removed! 🧑‍🏫", quote=True)
+       else:
+           return await message.reply_text("🚫 No Token Active Has: `{code}`", quote=True)
 
 
 @bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228))
