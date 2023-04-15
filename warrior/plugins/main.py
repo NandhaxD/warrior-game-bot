@@ -14,7 +14,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 EDIT_PFP = []
 
 START_IMAGE = "https://i.imgur.com/muInEKC.jpeg"
-START_TEXT = "<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Play? Tap /help for Commands."
+START_TEXT = "<b>{name}</b>, Am I Warrior Game Bot I've Many Games In My Sides. Let's Start Playing? Tap /help"
 
 async def ask_to_dm_first(message):
      username = (await bot.get_me()).username
