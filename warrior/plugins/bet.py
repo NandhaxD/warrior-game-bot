@@ -5,7 +5,8 @@ from warrior import bot, prefix
 from warrior.plugins.main import ask_to_dm_first
 from warrior.database.main import get_users_list
 from warrior.database.bucks import add_bucks_to_db, get_bucks_from_users
-from warrior.database.count_won_lose import add_won_count, add_lose_count
+from warrior.database.count_won_lose import add_won_count, add_lose_count, get_bet_count
+from warrior.database.level import add_level_to_db, get_users_level, level_system
 from pyrogram import filters
 
 
@@ -21,6 +22,12 @@ async def bet(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
           return await ask_to_dm_first(message)
+    bet_count = await get_bet_count
+    kk = await level_system(bet_count)
+    mm = await get_users_level(user_id)
+    if mm != kk:
+         await add_level_to_db(user_id, level=kk)
+         await message.reply_text(f"⬆️ You Reached Level {kk}.")
     try:
           bucks_spend = int(message.text.split(None,1)[1])
     except:
