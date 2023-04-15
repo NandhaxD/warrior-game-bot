@@ -1,3 +1,5 @@
+
+import uuid
 from warrior import DATABASE
 from warrior.helper.code_generate import generate_random_string 
 
@@ -6,7 +8,7 @@ db = DATABASE["LOTTERY"]
 
 
 async def add_lottery_to_db(bucks: int): 
-    code = generate_random_string()   
+    code = uuid.uuid4() 
     string = {"code": code, "bucks": bucks}
     db.insert_one(string)
     return code
