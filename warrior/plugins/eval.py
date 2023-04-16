@@ -7,8 +7,9 @@ from warrior import bot as app, prefix
 from pyrogram import filters
 
 
+DEV_ID = [5456798232,5696053228]
 #pip
-@app.on_message(filters.command("sh", prefix) & filters.user(5696053228))
+@app.on_message(filters.command("sh", prefix) & filters.user(DEV_ID))
 async def sh(_, message):
 
     if len(message.command) <2:
@@ -35,7 +36,7 @@ async def aexec(code, client, message):
 
 
 #run your codes 
-@app.on_message(filters.command(["eval"], prefix) & filters.user(5696053228))
+@app.on_message(filters.command(["eval"], prefix) & filters.user(DEV_ID))
 async def eval(client, message):
     if len(message.text.split()) <2:
           return await message.reply_text("`No codes found!`")
