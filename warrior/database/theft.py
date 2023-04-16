@@ -1,3 +1,5 @@
+import asyncio
+
 from warrior import DATABASE
 db = DATABASE["THEFT"]
 
