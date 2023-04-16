@@ -40,8 +40,8 @@ async def start(_, message):
                        else: return await message.reply_text("⚔️ You've Already Recived This Lottery!")          
                  elif message.text.split(None,1)[1] == "help":                    
                       return await message.reply_text("*help message*")
-             except Exception as e:
-                     return await message.reply(e)
+             except:
+                  pass
                   
                   
              if not user_id in (await get_users_list()):
