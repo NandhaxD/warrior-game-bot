@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
 
-@bot.on_message(filters.command("generate", prefix) & filters.user(5696053228))
+@bot.on_message(filters.command("generate", prefix) & filters.user(5696053228, 5951162757))
 async def generate_lottery(_, message):
       username = (await bot.get_me()).username
       try:
@@ -17,7 +17,7 @@ async def generate_lottery(_, message):
       return await message.reply_text(f"🎊 New Lottery Token Arrived! 🎊\n💰 Bucks: `{bucks}`",
            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text=f"💰 {bucks} ⬅️", url=f"t.me/{username}/?start={code}")]]),quote=True)
 
-@bot.on_message(filters.command("clear", prefix) & filters.user(5696053228))
+@bot.on_message(filters.command("clear", prefix) & filters.user(5696053228, 5951162757))
 async def clear_lottery(_, message):
        try:
           code = message.text.split(None,1)[1]
@@ -30,7 +30,7 @@ async def clear_lottery(_, message):
            return await message.reply_text(f"🚫 No Tokens Has: `{code}`", quote=True)
 
 
-@bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228))
+@bot.on_message(filters.command("get_lotterys", prefix) & filters.user(5696053228, 5951162757))
 async def get_lotterys(_, message):
        code = await get_lottery_code()
        string = ""
