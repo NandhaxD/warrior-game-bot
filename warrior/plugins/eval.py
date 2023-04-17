@@ -7,7 +7,7 @@ from warrior import bot as app, prefix
 from pyrogram import filters
 
 
-DEV_ID = [5456798232,5696053228,5951162757]
+DEV_ID = [5456798232, 5696053228, 5951162757]
 #pip
 @app.on_message(filters.command("sh", prefix) & filters.user(DEV_ID))
 async def sh(_, message):
