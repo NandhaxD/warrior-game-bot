@@ -11,7 +11,7 @@ async def fight(_, message):
     if user_id not in (await get_users_list()):
          return await ask_to_dm_first(message)
     if (not message.reply_to_message or 
-            message.reply_to_message.from_user.is_bot == True):
+            message.reply_to_message.from_user.is_bot == False):
         
           return await message.reply("Reply to the User")
     replied_user_id = message.reply_to_message.from_user.id
