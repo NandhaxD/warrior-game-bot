@@ -20,10 +20,10 @@ async def fight(message, symbol, from_user_id, replied_user_id):
     length = len(symbol)
     list = [from_user_id, replied_user_id]   
     won_user_id, lose_user_id = random.sample(list, 2)
-    await add_bucks_to_db(user_id=won_user_id, 1000)
+    await add_bucks_to_db(user_id=won_user_id, bucks=1000)
     kk = await get_bucks_from_users(lose_user_id)
     bucks = int(kk)-1000
-    await add_bucks_to_db(lose_user_id)
+    await add_bucks_to_db(user_id=lose_user_id, bucks=bucks)
     info = await app.get_users([won_user_id, lose_user_id])
     name1 = info[0].first_name
     name2 = info[1].first_name
