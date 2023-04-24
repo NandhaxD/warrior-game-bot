@@ -1,7 +1,7 @@
 from pyrogram import filters
 from warrior import bot, prefix 
 
-from warrior.main import ask_dm_to_first
+from warrior.plugins.main import ask_dm_to_first
 from warrior.database.main import get_users_list
 from warrior.database.fight import fight
 
