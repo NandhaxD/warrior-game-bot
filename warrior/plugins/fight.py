@@ -6,7 +6,7 @@ from warrior.database.main import get_users_list
 from warrior.database.fight import fight
 
 @bot.on_message(filters.command("fight", prefix))
-async def fight(_, message):
+async def fighting(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
          return await ask_to_dm_first(message)
