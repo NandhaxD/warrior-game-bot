@@ -1,11 +1,11 @@
 from pyrogram import filters
-from warrior import app, prefix 
+from warrior import bot, prefix 
 
 from warrior.main import ask_dm_to_first
 from warrior.database.main import get_users_list
 from warrior.database.fight import fight
 
-@app.on_message(filters.command("fight", prefix))
+@bot.on_message(filters.command("fight", prefix))
 async def fight(_, message):
     user_id = message.from_user.id
     if user_id not in (await get_users_list()):
