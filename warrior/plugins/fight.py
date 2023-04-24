@@ -15,10 +15,12 @@ async def fight(_, message):
           return await message.reply("Reply to the User")
     replied_user_id = message.reply_to_message.from_user.id
     from_user_id = user_id
-    return await fight(
-         message=message,
+    x = await message.reply("wow")
+    await fight(
+         message=x,
          symbol="⚇⚇⚇⚇⚇⚇⚇⚇",
          from_user_id=from_user_id, 
-         replied_user_id=replied_user_id)
+         replied_user_id=replied_user_id
+)
          
      
