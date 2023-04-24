@@ -12,9 +12,11 @@ is_fighting = []
 
 async def fight(message, symbol, from_user_id, replied_user_id):
     if from_user_id in is_fighting:
-         return await message.edit("You've fighting to someone please wait for next fight")
+         await message.edit("You've fighting to someone please wait for next fight")
+         return 
     elif replied_user_id in is_fighting:
-         return await message.edit("The user is fighting please wait while it is finished!")
+         await message.edit("The user is fighting please wait while it is finished!")
+         return 
     is_fighting.append(from_user_id) 
     is_fighting.append(replied_user_id)
     length = len(symbol)
@@ -38,7 +40,9 @@ async def fight(message, symbol, from_user_id, replied_user_id):
            new_symbol = "⚉" * (length - i - 1) + symbol[i] + "⚉" * i
            await message.edit(new_symbol)
            await asyncio.sleep(3)
-    return await message.edit(string)
+    await message.edit(string)
+    is_fighting.remove(from_user_id) 
+    is_fighting.remove(replied_user_id)
     
 
 
