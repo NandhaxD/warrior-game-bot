@@ -47,5 +47,5 @@ async def fight(message, symbol, from_user_id, replied_user_id):
 
 
 
-      
+   #pulu   
 
