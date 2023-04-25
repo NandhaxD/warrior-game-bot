@@ -1,7 +1,7 @@
 import asyncio
 import random
 
-from warrior import DATABASE
+from warrior import DATABASE, bot
 db = DATABASE["FIGHT"]
 
 from warrior.database.bucks import get_bucks_from_users, add_bucks_to_db
@@ -20,7 +20,7 @@ async def fight(message, symbol, from_user_id, replied_user_id):
     is_fighting.append(from_user_id) 
     is_fighting.append(replied_user_id)
 
-    length = len(symbol)
+    
     list = [from_user_id, replied_user_id]  
  
     won_user_id, lose_user_id = random.sample(list, 2)
@@ -34,16 +34,19 @@ async def fight(message, symbol, from_user_id, replied_user_id):
           is_fighting.remove(from_user_id) 
           is_fighting.remove(replied_user_id)
           return await message.edit(str(e))
-    info = await app.get_users([won_user_id, lose_user_id])
+
+    info = await bot.get_users([won_user_id, lose_user_id])
     name1 = info[0].first_name
     name2 = info[1].first_name
+
     string = f"""\u0020
 ⚔️ The fight was so interesting but the winner is {name1}, he defeated {name2} ⚔️
 
 {name1} won: 1000
 {name2} lose: 1000
 """
-    
+    length = len(symbol)
+
     for i in range(length):
            new_symbol = "⚉" * (length - i - 1) + symbol[i] + "⚉" * i
            await message.edit(new_symbol)
