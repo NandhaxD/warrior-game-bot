@@ -12,20 +12,28 @@ is_fighting = []
 
 async def fight(message, symbol, from_user_id, replied_user_id):
     if from_user_id in is_fighting:
-         await message.edit("You've fighting to someone please wait for next fight")
-         return 
+         return await message.edit("You've fighting to someone please wait for next fight")
+          
     elif replied_user_id in is_fighting:
-         await message.edit("The user is fighting please wait while it is finished!")
-         return 
+         return await message.edit("The user is fighting please wait while it is finished!")
+        
     is_fighting.append(from_user_id) 
     is_fighting.append(replied_user_id)
+
     length = len(symbol)
-    list = [from_user_id, replied_user_id]   
+    list = [from_user_id, replied_user_id]  
+ 
     won_user_id, lose_user_id = random.sample(list, 2)
-    await add_bucks_to_db(user_id=won_user_id, bucks=1000)
-    kk = await get_bucks_from_users(lose_user_id)
-    bucks = int(kk)-1000
-    await add_bucks_to_db(user_id=lose_user_id, bucks=bucks)
+
+    try:
+        await add_bucks_to_db(user_id=won_user_id, bucks=1000)
+        kk = await get_bucks_from_users(lose_user_id)
+        bucks = int(kk)-1000
+        await add_bucks_to_db(user_id=lose_user_id, bucks=bucks)
+    except Exception as e:
+          is_fighting.remove(from_user_id) 
+          is_fighting.remove(replied_user_id)
+          return await message.edit(str(e))
     info = await app.get_users([won_user_id, lose_user_id])
     name1 = info[0].first_name
     name2 = info[1].first_name
@@ -47,5 +55,5 @@ async def fight(message, symbol, from_user_id, replied_user_id):
 
 
 
-   #pulu   
+
 
