@@ -122,7 +122,7 @@ async def set_pfp(_, message):
             await add_bucks_to_db(user_id, -1000)
             await message.reply_to_message.delete()
             bucks = await get_bucks_from_users(user_id)
-            await message.reply_text(f"Successfully Profile Saved! ✅\n  💰 Your Current Bucks: {bucks}")  
+            await message.reply_text(f"Successfully Profile Saved! ✅\n To Check Current Bucks Balance by Tap /profile")  
             EDIT_PFP.remove(user_id)
      else:
          return 
