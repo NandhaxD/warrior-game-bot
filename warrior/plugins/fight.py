@@ -3,6 +3,7 @@ from warrior import bot, prefix
 
 from warrior.plugins.main import ask_to_dm_first
 from warrior.database.main import get_users_list
+from warrior.database.bucks import get_bucks_from_users
 from warrior.database.fight import fight
 
 @bot.on_message(filters.command("fight", prefix))
@@ -14,8 +15,17 @@ async def fighting(_, message):
         
           return await message.reply("Reply to the User")
     replied_user_id = message.reply_to_message.from_user.id
+    bucks = await get_bucks_from_users(user_id)
+
+    if bucks < 1000:
+         return await message.reply("you atleast hand 1000 bucks to fight!")
+
+    bucks = await get_bucks_from_users(replied_user_id)
+    if bucks < 1000:
+         return await message.reply("you atleast hand 1000 bucks to fight!")
+
     from_user_id = user_id
-    x = await message.reply("wow")
+    x = await message.reply("Let's Begin The Fight UwU")
     await fight(
          message=x,
          symbol="⚇⚇⚇⚇⚇⚇⚇⚇",
