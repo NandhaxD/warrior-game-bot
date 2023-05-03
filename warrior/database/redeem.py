@@ -2,17 +2,17 @@
 import uuid
 from warrior import DATABASE
 
-db = DATABASE["LOTTERY"]
+db = DATABASE["REDEEM"]
 
 
 
-async def add_lottery_to_db(bucks: int): 
+async def add_redeem_to_db(bucks: int): 
     code = str(uuid.uuid4().hex)
     string = {"code": code, "bucks": bucks}
     db.insert_one(string)
     return code
 
-async def remove_lottery_to_db(code: str):
+async def remove_redeem_to_db(code: str):
       string = {"code": code}
       find = db.find_one(string)
       if find:
@@ -22,13 +22,13 @@ async def remove_lottery_to_db(code: str):
          return False
 
 
-async def get_lottery_code():
+async def get_redeem_code():
       code = [x for x in db.find()]
       return code
     
 
 
-async def get_lottery_bucks(code, user_id: int):
+async def get_redeem_bucks(code, user_id: int):
      if db.find_one({"code": code}):
           xx = db.find_one({"code": code})
           try:
