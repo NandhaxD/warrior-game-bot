@@ -7,7 +7,7 @@ from warrior.database.bucks import get_bucks_from_users, add_bucks_to_db
 from warrior.database.profile import add_profile_to_users, get_profile_from_users
 from warrior.database.count_won_lose import get_won_count
 from warrior.database.level import get_users_level
-from warrior.database.lottery import get_lottery_code, get_lottery_bucks
+from warrior.database.redeem import get_redeem_code, get_redeem_bucks
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
 
@@ -29,11 +29,11 @@ async def start(_, message):
       user_id = int(message.from_user.id)
       mention = message.from_user.mention
       if message.chat.type == enums.ChatType.PRIVATE:
-             token = await get_lottery_code()
+             token = await get_redeem_code()
              TOKEN_LIST = [x["code"] for x in token]
              try:
                  if bool(message.text.split(None,1)[1] in TOKEN_LIST):
-                       bucks = await get_lottery_bucks(code=message.text.split(None,1)[1], user_id=user_id)
+                       bucks = await get_redeem_bucks(code=message.text.split(None,1)[1], user_id=user_id)
                        if bucks != False:
                             await add_bucks_to_db(user_id=user_id, bucks=bucks)
                             return await message.reply_text(f"🎊 Congratulations 🎊\nYou've Recived {bucks} 💰", quote=True)    
